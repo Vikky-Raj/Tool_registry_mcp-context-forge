@@ -148,6 +148,7 @@ For a list of upcoming features, check out the [ContextForge Roadmap](https://ib
 ### 📚 Quick Start Guides
 
 * **[How to Add Remote Tools](ADDING_REMOTE_TOOLS.md)** - Quick reference for adding REST APIs as MCP tools
+* **[Remote Tool Field Reference](REMOTE_TOOL_REFERENCE.md)** - Complete field reference card with examples
 * **[Detailed Remote Tools Guide](docs/docs/how-to-add-remote-tool.md)** - Comprehensive documentation with examples
 * **[Remote Tools Template](examples/remote-tools-template.json)** - JSON template for bulk import
 
