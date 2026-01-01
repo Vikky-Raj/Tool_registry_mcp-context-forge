@@ -1,0 +1,223 @@
+[
+  {
+    "_comment": "OpenWeather API - Get current weather data",
+    "name": "openweather-current",
+    "displayName": "OpenWeather Current Weather",
+    "url": "https://api.openweathermap.org/data/2.5/weather",
+    "integration_type": "REST",
+    "request_type": "GET",
+    "description": "Retrieves current weather data for any location worldwide. Provides temperature, humidity, pressure, wind speed, and weather conditions. Get your free API key at https://openweathermap.org/api",
+    "auth_type": "bearer",
+    "auth_value": "YOUR_OPENWEATHER_API_KEY",
+    "headers": {
+      "Accept": "application/json",
+      "User-Agent": "MCP-Gateway/1.0"
+    },
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "q": {
+          "type": "string",
+          "description": "City name. Examples: 'London', 'New York,US', 'Tokyo,JP'"
+        },
+        "units": {
+          "type": "string",
+          "description": "Units of measurement: standard (Kelvin), metric (Celsius), or imperial (Fahrenheit)",
+          "enum": ["standard", "metric", "imperial"],
+          "default": "metric"
+        },
+        "lang": {
+          "type": "string",
+          "description": "Language for weather descriptions (en, es, fr, de, it, etc.)",
+          "default": "en"
+        }
+      },
+      "required": ["q"]
+    },
+    "jsonpath_filter": "",
+    "tags": ["weather", "api", "openweather", "external", "real-time"],
+    "visibility": "public"
+  },
+  {
+    "_comment": "GitHub User API - Get public user information",
+    "name": "github-user-info",
+    "displayName": "GitHub User Information",
+    "url": "https://api.github.com/users",
+    "integration_type": "REST",
+    "request_type": "GET",
+    "description": "Retrieve public information about a GitHub user including profile data, repositories, followers, and more. No authentication required for public data.",
+    "headers": {
+      "Accept": "application/vnd.github+json",
+      "User-Agent": "MCP-Gateway/1.0"
+    },
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "GitHub username to query"
+        }
+      },
+      "required": ["username"]
+    },
+    "tags": ["github", "api", "developer", "profile"],
+    "visibility": "public"
+  },
+  {
+    "_comment": "JSONPlaceholder API - Test POST endpoint",
+    "name": "jsonplaceholder-create-post",
+    "displayName": "JSONPlaceholder Create Post",
+    "url": "https://jsonplaceholder.typicode.com/posts",
+    "integration_type": "REST",
+    "request_type": "POST",
+    "description": "Create a test blog post using JSONPlaceholder fake REST API. Perfect for testing and development. No authentication required.",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Post title"
+        },
+        "body": {
+          "type": "string",
+          "description": "Post content"
+        },
+        "userId": {
+          "type": "integer",
+          "description": "User ID (1-10)",
+          "default": 1
+        }
+      },
+      "required": ["title", "body"]
+    },
+    "tags": ["test", "api", "jsonplaceholder", "demo"],
+    "visibility": "public"
+  },
+  {
+    "_comment": "REST Countries API - Get country information",
+    "name": "rest-countries",
+    "displayName": "REST Countries API",
+    "url": "https://restcountries.com/v3.1/name",
+    "integration_type": "REST",
+    "request_type": "GET",
+    "description": "Get detailed information about countries including population, capital, languages, currencies, and more. No authentication required.",
+    "headers": {
+      "Accept": "application/json"
+    },
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "Country name (e.g., 'France', 'Japan', 'Brazil')"
+        },
+        "fullText": {
+          "type": "boolean",
+          "description": "Search by full country name",
+          "default": false
+        }
+      },
+      "required": ["country"]
+    },
+    "tags": ["geography", "api", "countries", "reference"],
+    "visibility": "public"
+  },
+  {
+    "_comment": "Example with Bearer Token Authentication",
+    "name": "example-bearer-auth",
+    "displayName": "Example API with Bearer Token",
+    "url": "https://api.example.com/v1/data",
+    "integration_type": "REST",
+    "request_type": "GET",
+    "description": "Example tool showing how to configure Bearer token authentication. Replace with your actual API endpoint and token.",
+    "auth_type": "bearer",
+    "auth_value": "YOUR_BEARER_TOKEN_HERE",
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Number of results to return",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": ["query"]
+    },
+    "tags": ["example", "bearer-auth"],
+    "visibility": "private"
+  },
+  {
+    "_comment": "Example with Basic Authentication",
+    "name": "example-basic-auth",
+    "displayName": "Example API with Basic Auth",
+    "url": "https://api.example.com/v1/secure",
+    "integration_type": "REST",
+    "request_type": "POST",
+    "description": "Example tool showing how to configure Basic authentication. Replace with your actual API endpoint and credentials.",
+    "auth_type": "basic",
+    "auth_username": "YOUR_USERNAME",
+    "auth_password": "YOUR_PASSWORD",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "description": "Data to send",
+          "properties": {
+            "field1": {"type": "string"},
+            "field2": {"type": "number"}
+          }
+        }
+      },
+      "required": ["data"]
+    },
+    "tags": ["example", "basic-auth"],
+    "visibility": "private"
+  },
+  {
+    "_comment": "Example with Custom Headers Authentication",
+    "name": "example-custom-headers",
+    "displayName": "Example API with Custom Headers",
+    "url": "https://api.example.com/v1/custom",
+    "integration_type": "REST",
+    "request_type": "GET",
+    "description": "Example tool showing how to configure custom header authentication. Some APIs use X-API-Key or other custom headers.",
+    "auth_type": "authheaders",
+    "auth_headers": {
+      "X-API-Key": "your-api-key-here",
+      "X-Client-ID": "your-client-id",
+      "X-Custom-Header": "custom-value"
+    },
+    "headers": {
+      "Accept": "application/json"
+    },
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Resource identifier"
+        }
+      },
+      "required": ["id"]
+    },
+    "tags": ["example", "custom-headers"],
+    "visibility": "private"
+  }
+]
