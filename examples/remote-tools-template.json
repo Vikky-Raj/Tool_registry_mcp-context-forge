@@ -1,5 +1,9 @@
 [
   {
+    "_comment": "⚠️ SECURITY WARNING: Replace ALL placeholder credentials (YOUR_*_KEY, YOUR_USERNAME, etc.) with your actual API keys before importing. NEVER commit API keys to version control. Use environment variables for production deployments.",
+    "_template_version": "1.0"
+  },
+  {
     "_comment": "OpenWeather API - Get current weather data",
     "name": "openweather-current",
     "displayName": "OpenWeather Current Weather",
@@ -39,13 +43,13 @@
     "visibility": "public"
   },
   {
-    "_comment": "GitHub User API - Get public user information",
+    "_comment": "GitHub User API - Get public user information. Note: The 'username' parameter is appended to the URL at runtime.",
     "name": "github-user-info",
     "displayName": "GitHub User Information",
-    "url": "https://api.github.com/users",
+    "url": "https://api.github.com/users/{username}",
     "integration_type": "REST",
     "request_type": "GET",
-    "description": "Retrieve public information about a GitHub user including profile data, repositories, followers, and more. No authentication required for public data.",
+    "description": "Retrieve public information about a GitHub user including profile data, repositories, followers, and more. No authentication required for public data. The username is provided as a path parameter.",
     "headers": {
       "Accept": "application/vnd.github+json",
       "User-Agent": "MCP-Gateway/1.0"

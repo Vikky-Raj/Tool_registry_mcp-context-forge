@@ -166,8 +166,11 @@ def main():
             all_errors.append(f"Tool {i}: Must be a JSON object")
             continue
         
-        # Skip comment entries
-        if "_comment" in tool and len(tool) == 1:
+        # Skip comment-only entries (entries that start with "_" or only have metadata fields)
+        # These are template metadata/comments and not actual tool definitions
+        is_metadata_only = all(key.startswith("_") for key in tool.keys())
+        if is_metadata_only:
+            print(f"  ℹ️  Entry {i}: Metadata/comment entry (skipped)")
             continue
         
         errors = validate_tool(tool, i)
@@ -189,13 +192,16 @@ def main():
     else:
         print("✨ All tools validated successfully!")
         print()
+        # Filter out metadata-only entries for accurate statistics
+        actual_tools = [t for t in tools if isinstance(t, dict) and not all(key.startswith("_") for key in t.keys())]
         print("📊 Summary:")
-        print(f"  • Total tools: {len(tools)}")
-        print(f"  • Integration types: {len(set(t.get('integration_type', '') for t in tools))}")
-        print(f"  • Request types: {len(set(t.get('request_type', '') for t in tools))}")
-        print(f"  • With authentication: {sum(1 for t in tools if t.get('auth_type'))}")
-        print(f"  • With input schema: {sum(1 for t in tools if t.get('input_schema'))}")
-        print(f"  • With output schema: {sum(1 for t in tools if t.get('output_schema'))}")
+        print(f"  • Total entries: {len(tools)}")
+        print(f"  • Valid tools: {len(actual_tools)}")
+        print(f"  • Integration types: {len(set(t.get('integration_type', '') for t in actual_tools if t.get('integration_type')))}")
+        print(f"  • Request types: {len(set(t.get('request_type', '') for t in actual_tools if t.get('request_type')))}")
+        print(f"  • With authentication: {sum(1 for t in actual_tools if t.get('auth_type'))}")
+        print(f"  • With input schema: {sum(1 for t in actual_tools if t.get('input_schema'))}")
+        print(f"  • With output schema: {sum(1 for t in actual_tools if t.get('output_schema'))}")
         print()
         print("✅ The template is ready to use for bulk import!")
         return 0
