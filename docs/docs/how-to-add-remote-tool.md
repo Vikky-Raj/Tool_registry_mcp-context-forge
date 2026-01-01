@@ -190,7 +190,15 @@ For adding multiple tools at once, use the Bulk Import feature.
 ]
 ```
 
-5. **Import**
+5. **Validate (Optional)**
+   
+   Before importing, you can validate your JSON file:
+   
+   ```bash
+   python3 scripts/validate_remote_tools_template.py
+   ```
+
+6. **Import**
    - Review the preview showing number of tools
    - Click "Import Tools"
    - Check results showing success/failure counts
@@ -416,8 +424,31 @@ mcpgateway --log-level DEBUG
 - Type mismatches between schema and actual data
 - Missing required fields
 
-**Solution:**
-Use a JSON Schema validator like [jsonschemavalidator.net](https://www.jsonschemavalidator.net/) to validate your schemas.
+**Solutions:**
+1. Use a JSON Schema validator like [jsonschemavalidator.net](https://www.jsonschemavalidator.net/) to validate your schemas
+2. Use the built-in validation script before importing:
+   ```bash
+   python3 scripts/validate_remote_tools_template.py
+   ```
+   This will check:
+   - All required fields are present
+   - Field values are valid
+   - JSON structure is correct
+   - Schemas are properly formatted
+
+### Bulk Import Issues
+
+**Validation Errors:**
+Before importing a large JSON file, validate it first:
+```bash
+python3 scripts/validate_remote_tools_template.py
+```
+
+**Common Problems:**
+- Missing required fields (name, url, integration_type, request_type)
+- Invalid enum values (integration_type, request_type, auth_type)
+- Malformed JSON structure
+- Authentication credentials not properly formatted
 
 ### Authentication Not Working
 
