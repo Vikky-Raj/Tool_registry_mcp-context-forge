@@ -1,5 +1,6 @@
 nav:
   - Overview: index.md
+  - Technical Deep Dive: technical-deep-dive.md
   - Roadmap: roadmap.md
   - Security Features: security-features.md
   - Plugin Framework: plugins.md
