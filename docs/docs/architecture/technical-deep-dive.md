@@ -766,8 +766,8 @@ UI (HTMX)  →  Admin API  →  Service  →  ORM Model  →  Database
 
 **Detailed per-layer transformations:**
 
-| Layer | Input | Output | Transformation |
-|-------|-------|--------|----------------|
+| Layer | Input | Output | Operation |
+|-------|-------|--------|-----------|
 | UI (HTMX) | User action (click, form) | HTTP request | Form data → HTTP POST |
 | Router | HTTP request | Pydantic schema | JSON → `ToolCreate` / `ToolInvocation` |
 | Service | Pydantic schema | ORM model | `ToolCreate` → `Tool` (SQLAlchemy) |
